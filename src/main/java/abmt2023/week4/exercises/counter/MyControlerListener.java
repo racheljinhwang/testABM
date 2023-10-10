@@ -31,20 +31,20 @@ public class MyControlerListener implements StartupListener, IterationEndsListen
 	}
 	
 	public void notifyIterationEnds(IterationEndsEvent event) {
-		
-		//store event data per iteration
+	
+		this.enterEvents[event.getIteration()] = this.eventHandler.getCounterEnter();
+		this.leaveEvents[event.getIteration()] = this.eventHandler.getCounterLeave();	
 		
 		if (event.getIteration() == scenario.getConfig().controler().getLastIteration()) {
-			
-			// write all data gathered in csv files so specify output path
-			String path = "";
-			
+			// write all data gathered in csv files
+			String path = event.getServices().getControlerIO().getOutputPath() + "\\events.csv";
 			try {
 				//Because we want to write to CSV we would use the generic bufferred writer and specify the csv file name
 		        BufferedWriter writer = IOUtils.getBufferedWriter(path);
-				
-				//write out the events using the bufferedWriter object
-		        
+				writer.write("iteration,numlinkenter,numlinkleave\n");
+				for (int i = 0; i <= event.getIteration();i++) {
+					writer.write(i + "," + this.enterEvents[i] + "," + this.leaveEvents[i] + "\n");
+				}
 				// flush() tells the Writer to output the stream
 				writer.flush();
 				
