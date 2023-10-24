@@ -21,8 +21,17 @@ import abmt2023.project.config.AstraConfigurator;
 import abmt2023.project.travel_time.SmoothingTravelTimeModule;
 
 public class RunBaselineSimulation {
+	
+	/**
+	 * 
+	 * you need one argument to run this class
+	 * --config-path "path-to-your-config-file/config.xml"
+	 * 
+	 */
 	static public void main(String[] args) throws ConfigurationException, MalformedURLException, IOException {
 		// Some paramters added from AdPT
+		
+		
 		CommandLine cmd = new CommandLine.Builder(args) //
 				.requireOptions("config-path") //
 				.allowPrefixes( "mode-parameter", "cost-parameter") //
