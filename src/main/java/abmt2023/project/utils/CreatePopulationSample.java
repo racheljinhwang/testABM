@@ -14,17 +14,21 @@ public class CreatePopulationSample {
 		MutableScenario sc = ScenarioUtils.createMutableScenario(ConfigUtils.createConfig());
 
 		PopulationReader reader = new PopulationReader(sc);
+		
+		double sample = 0.25;
 
+		// input population file
 		reader.readFile(args[0]);
 
 		MutableScenario sc2 = ScenarioUtils.createMutableScenario(ConfigUtils.createConfig());
 
 		for (Person person : sc.getPopulation().getPersons().values()) {
 
-			if (MatsimRandom.getRandom().nextDouble() < 0.25)
+			if (MatsimRandom.getRandom().nextDouble() < sample)
 				sc2.getPopulation().addPerson(person);
 		}
 
+		// output population file
 		new PopulationWriter(sc2.getPopulation()).write(args[1]);
 
 	}
