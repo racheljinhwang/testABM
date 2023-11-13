@@ -22,6 +22,11 @@
 			<url>https://packagecloud.io/eth-ivt/eqasim/maven2</url>
 		</repository>
 
+		<repository>
+			<id>eth-ivt-sharing</id>
+			<url>https://packagecloud.io/eth-ivt/sharing/maven2</url>
+		</repository>
+
 
 	</repositories>
 
@@ -50,6 +55,12 @@
 		<artifactId>drt</artifactId>
 		<version>13.0</version>
 	</dependency>
+
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>sharing</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 
 	</dependencies>
 

@@ -11,7 +11,7 @@ public class SmartDispatcher implements Dispatcher {
 	@Override
 	public void dispatch() {
 		// do something really smart here
-		// but necessarily fast
+		// but not necessarily fast
 
 		System.out.println("We are doing something smart!");
 
