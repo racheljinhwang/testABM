@@ -15,7 +15,7 @@ import abmt2023.week8.exercises.mode_choice.AbmtModeChoiceModule;
 
 public class RunCustomEqasim {
 	
-	public static void main(String[] args)  {
+public static void main(String[] args)  {
 		
 		String configPath = args[0]; //use the sioux fall scenario config_default_eqasim.xml file
 		
@@ -43,18 +43,20 @@ public class RunCustomEqasim {
         eqasimConfig.setEstimator("bike", "BikeUtilityEstimator");
         eqasimConfig.setEstimator("pt", "PtUtilityEstimator");
         
-      //ToDo: now we change the estimator for car to the one we defined //we will use the name we will define in the mode choice module
+      //now we change the estimator for car to the one we defined //we will use the name we will define in the mode choice module
         eqasimConfig.setEstimator("car", "AbmtCarUtilityEstimator");
         
-      //ToDo: we also need to specify our own cost model here or in the config
+      //we also need to specify our own cost model here or in the config
         eqasimConfig.setCostModel("car", "AbmtCarCostModel");
         eqasimConfig.setCostModel("pt", "AbmtPtCostModel");
         
-      //to define the mode and cost parameters path directly in the config file. Ensure this file exist
-
+      //to define the mode and cost parameters path we can specify here or directly in the config file. Ensure this file exist
+        //eqasimConfig.setModeParametersPath("scenarios/siouxfalls-2014/mode_params.yml");
+       // eqasimConfig.setCostParametersPath("scenarios/siouxfalls-2014/cost_params.yml");
         
-      //ToDo: Here is how to add the AbmtModeAvailability to the dcm module directly, one can make changes to any of the parameterset this way
+      //Here is how to add the AbmtModeAvailability to the dcm module directly, one can make changes to any of the parameterset this way
         //First we get the dmc config group
+        //Comment it out because we already defined within the config file
         DiscreteModeChoiceConfigGroup dmcConfig = DiscreteModeChoiceConfigGroup.getOrCreate(config);
         dmcConfig.setModeAvailability("AbmtModeAvailability");
         
@@ -68,7 +70,15 @@ public class RunCustomEqasim {
         controler.addOverridingModule(new EqasimModeChoiceModule());
         controler.addOverridingModule(new DiscreteModeChoiceModule());
         
-      //ToDo: for clean code and organization, we create a module for all our mode choice class injections and add overriding module as below
+        
+      //Add an injection for mode parameters for the code to work
+		/*
+		 * controler.addOverridingModule(new AbstractModule() {
+		 * 
+		 * @Override public void install() {
+		 * bind(ModeParameters.class).asEagerSingleton(); } });
+		 */
+      //for clean code and organization, we create a module for all our mode choice class injections and add overriding module as below
         controler.addOverridingModule(new AbmtModeChoiceModule());
 
         controler.run();
