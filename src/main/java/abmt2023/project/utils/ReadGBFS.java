@@ -46,6 +46,11 @@ public class ReadGBFS {
 				.requireOptions("url", "network-path", "crs", "network-modes", "output-path") //
 				.build();
 
+		// --url "https://api.publibike.ch/v1/gbfs/v2/gbfs.json"
+		// --crs "EPSG:2056"
+		// --network-modes "car"
+		
+		
 		// Define transformation
 
 		CoordinateTransformation transformation = new GeotoolsTransformation( //
