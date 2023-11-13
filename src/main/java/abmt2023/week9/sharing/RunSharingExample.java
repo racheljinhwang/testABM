@@ -68,7 +68,7 @@ public class RunSharingExample {
 		// ... with a number of available vehicles and their initial locations
 		// the following file is an example and it works with the siouxfalls-2014
 		// scenario
-		serviceConfig.setServiceInputFile("shared_taxi_vehicles_stations.xml");
+		serviceConfig.setServiceInputFile("shared_bike_vehicles_stations.xml");
 
 		// ... and, we need to define the underlying mode, here "bike".
 		serviceConfig.setMode("bike");
