@@ -7,6 +7,7 @@ import org.eqasim.core.components.config.EqasimConfigGroup;
 import org.eqasim.core.simulation.mode_choice.AbstractEqasimExtension;
 import org.eqasim.core.simulation.mode_choice.ParameterDefinition;
 import org.eqasim.switzerland.mode_choice.SwissModeAvailability;
+import org.eqasim.switzerland.mode_choice.parameters.SwissCostParameters;
 import org.eqasim.switzerland.mode_choice.parameters.SwissModeParameters;
 import org.eqasim.switzerland.ovgk.OVGKCalculator;
 import org.matsim.core.config.CommandLine;
@@ -50,6 +51,7 @@ public class AstraModule extends AbstractEqasimExtension {
 
 		bind(SwissModeParameters.class).to(AstraModeParameters.class);
 
+		// bind (SwissCostParameters.class).to(DrtCostParameters.class);
 		bind(SwissModeAvailability.class);
 		bindModeAvailability(AstraModeAvailability.NAME).to(AstraModeAvailability.class);
 
@@ -68,6 +70,19 @@ public class AstraModule extends AbstractEqasimExtension {
 		ParameterDefinition.applyCommandLine("mode-parameter", commandLine, parameters);
 		return parameters;
 	}
+	
+//	@Provides
+//	@Singleton
+//	public DrtCostParameters provideCostParameters(EqasimConfigGroup config) {
+//		DrtCostParameters parameters = DrtCostParameters.buildDefault();
+//
+//		if (config.getCostParametersPath() != null) {
+//			ParameterDefinition.applyFile(new File(config.getCostParametersPath()), parameters);
+//		}
+//
+//		ParameterDefinition.applyCommandLine("cost-parameter", commandLine, parameters);
+//		return parameters;
+//	}
 
 	@Provides
 	@Singleton
